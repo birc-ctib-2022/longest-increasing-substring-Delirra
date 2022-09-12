@@ -57,8 +57,8 @@ def longest_increasing_substring(x: Sequence[Any]) -> tuple[int, int]:
     for i in range(len(x)):
         if i < best[1]:
             continue
-        for j in range(i + 1, len(x)):
+        for j in range(i + 1, len(x)+1):
             if is_increasing(x[i:j]) and len(range(i, j)) > len(range(best[0], best[1])):
-                best = (i, j+1)
+                best = (i, j)
 
     return best
