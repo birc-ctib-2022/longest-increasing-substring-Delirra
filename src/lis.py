@@ -49,4 +49,16 @@ def longest_increasing_substring(x: Sequence[Any]) -> tuple[int, int]:
     # The leftmost empty string is our first best bet
     best = (0, 0)
     # FIXME: explore the other possibilities
+
+    if is_increasing(x):
+        best = (0, len(x))
+        return best
+
+    for i in range(len(x)):
+        if i < best[1]:
+            continue
+        for j in range(i + 1, len(x)):
+            if is_increasing(x[i:j]) and len(range(i, j)) > len(range(best[0], best[1])):
+                best = (i, j+1)
+
     return best
